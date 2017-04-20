@@ -7,19 +7,23 @@ var customerSet = (function () {
         this.orderCount = orderCount;
         this.redemptionEligible = redemptionEligible;
     };
+    
+    function newCustomer (name, credit, orderCount, redemptionEligible) {
+            return new Customer(name, credit, orderCount, redemptionEligible);
+    };
+    function addCustomer (customer) {
+            customers.push(customer);
+    };
+    function getCustomerByName (name) {
+            return customers.find(customer => customer.name == name);
+    };
+    function setRedemptionStatus (customer, status) {
+            customer.redemptionEligible = status;
+    };
 
     return {
-        newCustomer: function (name, credit, orderCount, redemptionEligible) {
-            return new Customer(name, credit, orderCount, redemptionEligible);
-        },
-        addCustomer: function (customer) {
-            customers.push(customer);
-        },
-        getCustomerByName: function (name) {
-            return customers.find(customer => customer.name == name);
-        },
-        setRedemptionStatus: function (customer, status) {
-            customer.redemptionEligible = status;
-        }
+        newCustomer: newCustomer,
+        addCustomer: addCustomer,
+        getCustomerByName: getCustomerByName        
     }
 })();
