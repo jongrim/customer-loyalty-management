@@ -1,37 +1,90 @@
 html {
-    background: #34495e;
+    background: #eeeeee;
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'helvetica neue';
+    font-weight: 200;
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-image: url(assets/header_background.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    font-size: 5vw;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+    /*background: rgba(200, 200, 200, 0.85);*/
+    padding: 0 0.5em;
 }
 
 .container {
     display: flex;
     justify-content: space-around;
-    width: 58.75em;
+    width: 75vw;
     margin: 0 auto;
     flex-wrap: wrap;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+    /*border: 5px solid red;*/
+}
+
+.container.nav {
+    width: 100vw;
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+}
+
+.container.nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 2em;
+}
+
+.nav-item {
+    color: white;
+    text-align: center;
+    margin: 1em;
 }
 
 .container.search {
     justify-content: center;
-    min-height: 1.5em;
     background: none;
+    box-shadow: none;
 }
 
 .search-bar {
-    width: 50%;
+    width: 75%;
+    margin: 2em 0;
+    font-size: 1em;
 }
 
-.alphabet{
+.container.alphabet {
+    background: none;
+    box-shadow: none;
+}
+
+.alphabet-letter{
     font-size: 1.5em;
     flex: 1;
     text-align: center;
 }
 
-.alphabet:hover {
-    font-size: 1.7em;
+.alphabet-letter:hover {
+    transform: scale(1.25);
     cursor: pointer;
 }
 
@@ -40,14 +93,17 @@ html {
     width: 100%;
     padding-left: 1em;
     padding-right: 1em;
-    padding-top: 5px;
+    padding-top: 8px;
     /*border: 5px solid blue;*/
-    justify-content: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.9);
 }
 
 .table-row.header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+    border-top: none;
+    padding: 1em;
+    padding-bottom: 0.5em;
 }
 
 .text {
@@ -56,4 +112,36 @@ html {
 
 .num {
     flex: 1;
+}
+
+.input {
+    flex: 1;
+}
+
+.form {
+    position: fixed;
+    bottom: 0px;
+    right: 25px;
+    width: auto;
+    box-shadow: none;
+    background: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-button {
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    padding: 0 0.5em;
+    margin: 0 5px;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.form-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.form-button a:hover {
+    font-size: 1.2em;
+    text-decoration: none;
 }
