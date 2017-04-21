@@ -55,13 +55,15 @@ var customerSet = (function () {
     function newCustomer (name, credit, orderCount, redemptionEligible) {
         return new Customer(name, credit, orderCount, redemptionEligible);
     };
+
     function addCustomer (customer) {
         customers.push(customer);
-        makeTable();
     };
+
     function getCustomerByName (name) {
         return customers.find(customer => customer.name == name);
     };
+
     function setRedemptionStatus (customer, status) {
         customer.redemptionEligible = status;
     };
@@ -69,11 +71,16 @@ var customerSet = (function () {
     return {
         newCustomer: newCustomer,
         addCustomer: addCustomer,
-        getCustomerByName: getCustomerByName        
+        getCustomerByName: getCustomerByName,
+        makeCustomerTable: makeTable
     }
 })();
 
-for (var i = 0; i < 200; i++) {
-    let person = customerSet.newCustomer(`Jon${i}`, i, i, (i % 2) ? true : false);
+// for temporary testing
+for (var i = 0; i < 2000; i++) {
+    let person = customerSet
+        .newCustomer(`${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`, i, i, (i % 2) ? true : false);
     customerSet.addCustomer(person);
 }
+
+customerSet.makeCustomerTable();
