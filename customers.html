@@ -60,8 +60,29 @@
         <div class="alphabet-letter">Z</div>
         <div class="reset">Clr</div>
     </div>
-    <div class="container" id="customerTable">
+    <div class="container">
+        <div class="table-row header">
+            <div class="text">Name</div>
+            <div class="text">Lifetime Order Count</div>
+            <div class="num">Credit</div>
+            <div class="text">Redemption Status</div>
+            <div class="input">Select User</div>
+        </div>
+        <div class="table-row addCustomerRow">
+            <form action="#" class="addCustomer" id="addCustomer">
+                <div class="text"><input class="addCustomerInput" type="text" placeholder="Add new customer"></div>
+                <div class="text"><input class="addCustomerInput" type="number" placeholder="Order count"></div>
+                <div class="num"><input class="addCustomerInput" type="number" placeholder="Credit" min="0" max="1000" value="0.0" step="0.01"></div>
+                <div class="text">
+                    <label for="eligibilityCheckbox" id="eligibilityCheckboxLabel">Check if eligible</label>
+                    <input class="addCustomerInput" type="checkbox" id="eligibilityCheckbox"></div>
+                    
+                <div class="input"><input class="addCustomerInputSubmit" type="submit" value="Submit"></div>
+            </form>
+        </div>
+        <div class="container" id="customerTable">
 
+        </div>
     </div>
 
     <div class="container form">

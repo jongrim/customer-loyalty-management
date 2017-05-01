@@ -126,6 +126,51 @@ h1 {
     flex: 1;
 }
 
+.addCustomerRow {
+    /*Container for the addCustomer form*/
+    padding-top: 0;
+    padding-bottom: 4px;
+}
+
+.addCustomer {
+    /*Form to add new customers*/
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.addCustomerInput {
+    /*The input elements of the addCustomer form*/
+    width: 95%;
+    height: 100%;
+    text-align: center;
+    padding: 0 0 0 11px;
+    font-size: 75%;
+    color: #777777;
+    border: none;
+    font-weight: 100;
+}
+
+.addCustomerInputSubmit {
+    /*The submit input element of the addCustomer form*/
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 0;
+    font-size: 75%;
+    color: #777777;
+}
+
+#eligibilityCheckboxLabel {
+    color: #777777;
+    font-size: 80%;
+}
+
+#eligibilityCheckbox {
+    width: auto;
+    height: auto;
+}
+
 .form {
     position: fixed;
     bottom: 0px;

@@ -25,13 +25,7 @@ var customerSet = (function () {
     function makeTable(matchedArray) {
         let customerArray = matchedArray || customers;
         customerArray = sortCustomers(customerArray);
-        let result = `<div class="table-row header">
-            <div class="text">Name</div>
-            <div class="text">Lifetime Order Count</div>
-            <div class="num">Credit</div>
-            <div class="text">Redemption Status</div>
-            <div class="input">Select User</div>
-        </div>`
+        let result = ``
 
         let tableRows = customerArray.map((customer, i) => {
             return `
