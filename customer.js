@@ -13,11 +13,13 @@ var customerSet = (function () {
     const customerTable = document.querySelector('#customerTable');
     const searchBar = document.querySelector('.search-bar');
     const alphabetBar = document.querySelectorAll('.alphabet-letter');
+    const resetLetter = document.querySelector('.reset');
 
     //Bind event listeners    
     searchBar.addEventListener('change', findMatches);    
     searchBar.addEventListener('keyup', findMatches);
-    alphabetBar.forEach(letter => letter.addEventListener('click', findMatches));
+    alphabetBar.forEach(letter => letter.addEventListener('click', filterByLastName));
+    resetLetter.addEventListener('click', () => makeTable(false));
 
     //DOM rendering
     function makeTable(matchedArray) {
@@ -48,7 +50,6 @@ var customerSet = (function () {
         customerTable.innerHTML = result + tableRows;
     }
 
-    //TODO write sort function
     function sortCustomers(unsortedList) {
         if (unsortedList.length == 1) {
             return unsortedList;
@@ -59,7 +60,6 @@ var customerSet = (function () {
         }
 
         let mergeList = [];
-        console.log(typeof listB);
 
         while (listA.length > 0 && listB.length > 0) {
             let result = listA[0].lastName < listB[0].lastName ? listA.shift() : listB.shift();
@@ -76,10 +76,12 @@ var customerSet = (function () {
         return mergeList;
     }
 
-    function jumpToLetter() {
+    function filterByLastName() {
         let letter = this.innerText;
-        //TODO
-        
+        let matchedArray = customers.filter(customer => {
+            return customer.lastName[0] == letter
+        })
+        makeTable(matchedArray)        
     }
 
     function findMatches() {
@@ -128,8 +130,7 @@ for (var i = 0; i < 2000; i++) {
     customerSet.addCustomer(person);
 }
 
-var customers = customerSet.getCustomerList();
-var sortedCustomers = customerSet.getSortedList(customers);
-console.log(sortedCustomers);
+// var customers = customerSet.getCustomerList();
+// var sortedCustomers = customerSet.getSortedList(customers);
 
 customerSet.makeCustomerTable();

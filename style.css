@@ -80,18 +80,18 @@ h1 {
     font-size: 1em;
 }
 
-.container.alphabet {
+.alphabet {
     background: none;
     box-shadow: none;
 }
 
-.alphabet-letter{
+.alphabet-letter, .reset{
     font-size: 1.5em;
     flex: 1;
     text-align: center;
 }
 
-.alphabet-letter:hover {
+.alphabet-letter:hover, .reset:hover {
     transform: scale(1.25);
     cursor: pointer;
 }
