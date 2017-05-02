@@ -14,12 +14,14 @@ var customerSet = (function () {
     const searchBar = document.querySelector('.search-bar');
     const alphabetBar = document.querySelectorAll('.alphabet-letter');
     const resetLetter = document.querySelector('.reset');
+    const addCustomerForm = document.querySelector('.addCustomer');
 
     //Bind event listeners    
     searchBar.addEventListener('change', findMatches);    
     searchBar.addEventListener('keyup', findMatches);
     alphabetBar.forEach(letter => letter.addEventListener('click', filterByLastName));
     resetLetter.addEventListener('click', () => makeTable(false));
+    addCustomerForm.addEventListener('submit', addCustomerFromForm);
 
     //DOM rendering
     function makeTable(matchedArray) {
@@ -44,6 +46,22 @@ var customerSet = (function () {
         customerTable.innerHTML = result + tableRows;
     }
 
+    function addCustomerTableRow(customer) {
+        let newRow = document.createElement('div');
+        newRow.classList.add('table-row');
+        newRow.innerHTML = `
+            <div class="text">${customer.firstName + ' ' + customer.lastName}</div>
+            <div class="text">${customer.orderCount}</div>
+            <div class="num">$${customer.credit}</div>
+            <div class="text">${(customer.redemptionEligible) ? 'Eligible' : 'Not Eligible'}</div>
+            <div class="input">
+                <input type="checkbox" id="customer${customers.indexOf(customer)}">
+            </div>
+            `
+        customerTable.insertBefore(newRow, customerTable.firstChild)
+    }
+
+    // Local functions    
     function sortCustomers(unsortedList) {
         if (unsortedList.length == 1) {
             return unsortedList;
@@ -93,6 +111,20 @@ var customerSet = (function () {
     function addCustomer (customer) {
         customers.push(customer);
     };
+
+    function addCustomerFromForm() {
+        let values = this.querySelectorAll('input');
+        console.log(values)
+        let [firstName, lastName] = values[0].value.split(' ');
+        let orderCount = values[1].valueAsNumber
+        let credit = values[2].valueAsNumber
+        let redemptionStatus = values[3].checked
+        
+        let customer = newCustomer(firstName, lastName, credit, orderCount, redemptionStatus)
+        addCustomer(customer);
+        addCustomerTableRow(customer);
+        this.reset();
+    }
 
     function getCustomerByName (name) {
         return customers.find(customer => customer.name == name);
