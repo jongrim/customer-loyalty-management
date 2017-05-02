@@ -120,7 +120,7 @@ var customerSet = (function () {
         let credit = values[2].valueAsNumber
         let redemptionStatus = values[3].checked
         
-        let customer = newCustomer(firstName, lastName, credit, orderCount, redemptionStatus)
+        let customer = newCustomer(firstName, lastName || '', credit, orderCount, redemptionStatus)
         addCustomer(customer);
         addCustomerTableRow(customer);
         this.reset();
