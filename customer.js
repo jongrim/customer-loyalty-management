@@ -26,7 +26,6 @@ var customerSet = (function () {
     //DOM rendering
     function makeTable(matchedArray) {
         let customerArray = matchedArray || customers;
-        customerArray = sortCustomers(customerArray);
         let tableRows = customerArray.map(customer => {
             return `<div class="table-row">` +
                 buildCustomerRowFromObject(customer) +
@@ -55,30 +54,12 @@ var customerSet = (function () {
     }
 
     // Local functions    
-    function sortCustomers(unsortedList) {
-        if (unsortedList.length == 1) {
-            return unsortedList;
-        } else {
-            let midPoint = Math.floor(unsortedList.length / 2);
-            var listA = sortCustomers(unsortedList.slice(0, midPoint));
-            var listB = sortCustomers(unsortedList.slice(midPoint));
-        }
+    function sortCustomers(unsortedArray) {
+        let sortedArray = unsortedArray.sort((a, b) => {
+            return a.lastName < b.lastName ? -1 : 1;
+        });
 
-        let mergeList = [];
-
-        while (listA.length > 0 && listB.length > 0) {
-            let result = listA[0].lastName < listB[0].lastName ? listA.shift() : listB.shift();
-            mergeList.push(result);
-        }
-
-        while (listA.length > 0) {
-            mergeList.push(listA.shift());
-        }
-        while (listB.length > 0) {
-            mergeList.push(listB.shift());
-        }
-
-        return mergeList;
+        return sortedArray;
     }
 
     function filterByLastName() {
@@ -106,9 +87,8 @@ var customerSet = (function () {
     };
 
     function addCustomerFromForm(e) {
-        e.preventDefault();
+        e.preventDefault(); // prevents page from reloading
         let values = this.querySelectorAll('input');
-        console.log(values)
         let [firstName, lastName] = values[0].value.split(' ');
         let orderCount = values[1].valueAsNumber
         let credit = values[2].valueAsNumber
@@ -128,8 +108,12 @@ var customerSet = (function () {
         customer.redemptionEligible = status;
     };
 
-    function customerList() {
+    function getCustomerList() {
         return customers;
+    }
+
+    function setCustomerList(customerArray) {
+        customers = customerArray;
     }
 
     return {
@@ -138,7 +122,8 @@ var customerSet = (function () {
         addCustomer: addCustomer,
         getCustomerByName: getCustomerByName,
         makeCustomerTable: makeTable,
-        getCustomerList: customerList
+        getCustomerList: getCustomerList,
+        setCustomerList: setCustomerList,
     }
 })();
 
@@ -146,11 +131,11 @@ var customerSet = (function () {
 for (var i = 0; i < 2000; i++) {
     let person = customerSet
         .newCustomer(`${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`,
-        `${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`, i, i, (i % 2) ? true : false);
+        `${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`,
+        i, i, (i % 2) ? true : false);
     customerSet.addCustomer(person);
 }
 
-// var customers = customerSet.getCustomerList();
-// var sortedCustomers = customerSet.getSortedList(customers);
+customerSet.setCustomerList(customerSet.getSortedList(customerSet.getCustomerList()));
 
 customerSet.makeCustomerTable();
