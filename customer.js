@@ -32,6 +32,7 @@ var customerSet = (function () {
                 `</div>`
         }).join('');
         customerTable.innerHTML = tableRows;
+        resetCheckboxListeners();
     }
 
     function addCustomerTableRow(customer) {
@@ -39,6 +40,7 @@ var customerSet = (function () {
         newRow.classList.add('table-row');
         newRow.innerHTML = buildCustomerRowFromObject(customer);
         customerTable.insertBefore(newRow, customerTable.firstChild)
+        resetCheckboxListeners();
     }
 
     function buildCustomerRowFromObject(customer) {
@@ -48,9 +50,13 @@ var customerSet = (function () {
             <div class="num">$${customer.credit}</div>
             <div class="text">${(customer.redemptionEligible) ? 'Eligible' : 'Not Eligible'}</div>
             <div class="input">
-                <input type="checkbox" id="customer${customers.indexOf(customer)}">
+                <input type="checkbox" id="${customers.indexOf(customer)}">
             </div>
         `
+    }
+
+    function resetCheckboxListeners() {
+        pageElements.setCheckboxListeners();
     }
 
     // Local functions    
@@ -78,13 +84,19 @@ var customerSet = (function () {
         makeTable(matchedArray);
     }
     
-    function newCustomer (firstName, lastName, credit, orderCount, redemptionEligible) {
+    function newCustomer(firstName, lastName, credit, orderCount, redemptionEligible) {
         return new Customer(firstName, lastName, credit, orderCount, redemptionEligible);
     };
 
-    function addCustomer (customer) {
+    function addCustomer(customer) {
         customers.push(customer);
     };
+
+    function removeCustomersByIDArray(arrayOfIds) {
+        toDelete = arrayOfIds.sort((a, b) => a < b ? 1 : -1);
+        toDelete.forEach(id => customers.splice(id, 1));
+        makeTable();
+    }
 
     function addCustomerFromForm(e) {
         e.preventDefault(); // prevents page from reloading
@@ -120,22 +132,10 @@ var customerSet = (function () {
         getSortedList: sortCustomers,
         newCustomer: newCustomer,
         addCustomer: addCustomer,
+        removeCustomersByIDArray: removeCustomersByIDArray,
         getCustomerByName: getCustomerByName,
         makeCustomerTable: makeTable,
         getCustomerList: getCustomerList,
         setCustomerList: setCustomerList,
     }
 })();
-
-// for temporary testing
-for (var i = 0; i < 2000; i++) {
-    let person = customerSet
-        .newCustomer(`${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`,
-        `${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`,
-        i, i, (i % 2) ? true : false);
-    customerSet.addCustomer(person);
-}
-
-customerSet.setCustomerList(customerSet.getSortedList(customerSet.getCustomerList()));
-
-customerSet.makeCustomerTable();

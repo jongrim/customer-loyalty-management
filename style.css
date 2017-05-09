@@ -170,28 +170,28 @@ h1 {
 
 .form {
     position: fixed;
-    bottom: 0px;
+    bottom: 25px;
     right: 25px;
-    width: auto;
+    width: 50px;
     box-shadow: none;
     background: none;
     justify-content: center;
     align-items: center;
 }
 
-.form-button {
+.trash:hover {
+    cursor: pointer;
+}
+
+.trash {
     border: 1px solid rgba(0, 0, 0, 0.9);
     padding: 0 0.5em;
     margin: 0 5px;
     background: rgba(0, 0, 0, 0.9);
-}
-
-.form-button a {
     color: white;
-    text-decoration: none;
+    font-size: 36px;
 }
 
-.form-button a:hover {
-    font-size: 1.2em;
-    text-decoration: none;
+.invisible {
+    visibility: hidden;
 }
