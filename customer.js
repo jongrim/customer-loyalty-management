@@ -27,29 +27,23 @@ var customerSet = (function () {
     function makeTable(matchedArray) {
         let customerArray = matchedArray || customers;
         customerArray = sortCustomers(customerArray);
-        let result = ``
-
-        let tableRows = customerArray.map((customer, i) => {
-            return `
-            <div class="table-row">
-                <div class="text">${customer.firstName + ' ' + customer.lastName}</div>
-                <div class="text">${customer.orderCount}</div>
-                <div class="num">$${customer.credit}</div>
-                <div class="text">${(customer.redemptionEligible) ? 'Eligible' : 'Not Eligible'}</div>
-                <div class="input">
-                    <input type="checkbox" id="customer${i}">
-                </div>
-            </div>
-            `
+        let tableRows = customerArray.map(customer => {
+            return `<div class="table-row">` +
+                buildCustomerRowFromObject(customer) +
+                `</div>`
         }).join('');
-
-        customerTable.innerHTML = result + tableRows;
+        customerTable.innerHTML = tableRows;
     }
 
     function addCustomerTableRow(customer) {
         let newRow = document.createElement('div');
         newRow.classList.add('table-row');
-        newRow.innerHTML = `
+        newRow.innerHTML = buildCustomerRowFromObject(customer);
+        customerTable.insertBefore(newRow, customerTable.firstChild)
+    }
+
+    function buildCustomerRowFromObject(customer) {
+        return `
             <div class="text">${customer.firstName + ' ' + customer.lastName}</div>
             <div class="text">${customer.orderCount}</div>
             <div class="num">$${customer.credit}</div>
@@ -57,8 +51,7 @@ var customerSet = (function () {
             <div class="input">
                 <input type="checkbox" id="customer${customers.indexOf(customer)}">
             </div>
-            `
-        customerTable.insertBefore(newRow, customerTable.firstChild)
+        `
     }
 
     // Local functions    
