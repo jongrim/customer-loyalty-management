@@ -112,7 +112,8 @@ var customerSet = (function () {
         customers.push(customer);
     };
 
-    function addCustomerFromForm() {
+    function addCustomerFromForm(e) {
+        e.preventDefault();
         let values = this.querySelectorAll('input');
         console.log(values)
         let [firstName, lastName] = values[0].value.split(' ');
