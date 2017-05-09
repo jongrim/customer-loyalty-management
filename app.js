@@ -47,7 +47,7 @@ var pageElements = (function () {
 })();
 
 // for temporary testing
-for (var i = 0; i < 2000; i++) {
+for (var i = 0; i < 200; i++) {
     let person = customerSet
         .newCustomer(`Customer`,
         `${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25)) + String.fromCharCode(99 + (i % 24))}`,
