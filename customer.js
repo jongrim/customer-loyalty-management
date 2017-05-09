@@ -50,7 +50,7 @@ var customerSet = (function () {
             <div class="num">$${customer.credit}</div>
             <div class="text">${(customer.redemptionEligible) ? 'Eligible' : 'Not Eligible'}</div>
             <div class="input">
-                <input type="checkbox" id="${customers.indexOf(customer)}">
+                <input type="checkbox" class="customerCheckbox" id="${customers.indexOf(customer)}">
             </div>
         `
     }

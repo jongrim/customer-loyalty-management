@@ -35,7 +35,7 @@ var pageElements = (function () {
     }
 
     function addCheckboxListener() {
-        let checkboxes = document.querySelectorAll('input[type=checkbox]')
+        let checkboxes = document.querySelectorAll('.customerCheckbox')
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('click', displayTrash)
         });
