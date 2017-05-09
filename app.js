@@ -49,8 +49,8 @@ var pageElements = (function () {
 // for temporary testing
 for (var i = 0; i < 2000; i++) {
     let person = customerSet
-        .newCustomer(`${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`,
-        `${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25))}`,
+        .newCustomer(`Customer`,
+        `${String.fromCharCode(65 + (i % 26)) + String.fromCharCode(98 + (i % 25)) + String.fromCharCode(99 + (i % 24))}`,
         i, i, (i % 2) ? true : false);
     customerSet.addCustomer(person);
 }
