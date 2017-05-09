@@ -4,10 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Customer Database</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Customer Lookup</title>
+    <script src="https://use.fontawesome.com/25072039bf.js"></script>
 </head>
 <body>
-    <h1>Customer Database</h1>
-    <a href="./customers.html">Customer Lookup Page</a>
+    <header>
+        <h1>Customer Databse</h1>
+    </header>
+    <div class="container nav">
+        <div class="nav-item">
+            <a href="#">Home</a>
+        </div>
+        <div class="nav-item">
+            <a href="#">Inventory</a>
+        </div>
+        <div class="nav-item">
+            <a href="#">Parties</a>
+        </div>
+        <div class="nav-item">
+            <a href="#">Promote</a>
+        </div>
+        <div class="nav-item">
+            <a href="#">Reports</a>
+        </div>
+    </div>
+    <div class="container search">
+        <input type="search" class="search-bar" name="search" placeholder="Start typing to search..."/>
+    </div>
+    <div class="container alphabet">
+        <div class="alphabet-letter">A</div>
+        <div class="alphabet-letter">B</div>
+        <div class="alphabet-letter">C</div>
+        <div class="alphabet-letter">D</div>
+        <div class="alphabet-letter">E</div>
+        <div class="alphabet-letter">F</div>
+        <div class="alphabet-letter">G</div>
+        <div class="alphabet-letter">H</div>
+        <div class="alphabet-letter">I</div>
+        <div class="alphabet-letter">J</div>
+        <div class="alphabet-letter">K</div>
+        <div class="alphabet-letter">L</div>
+        <div class="alphabet-letter">M</div>
+        <div class="alphabet-letter">N</div>
+        <div class="alphabet-letter">O</div>
+        <div class="alphabet-letter">P</div>
+        <div class="alphabet-letter">Q</div>
+        <div class="alphabet-letter">R</div>
+        <div class="alphabet-letter">S</div>
+        <div class="alphabet-letter">T</div>
+        <div class="alphabet-letter">U</div>
+        <div class="alphabet-letter">V</div>
+        <div class="alphabet-letter">W</div>
+        <div class="alphabet-letter">X</div>
+        <div class="alphabet-letter">Y</div>
+        <div class="alphabet-letter">Z</div>
+        <div class="reset">Clr</div>
+    </div>
+    <div class="container">
+        <div class="table-row header">
+            <div class="text">Name</div>
+            <div class="text">Lifetime Order Count</div>
+            <div class="num">Credit</div>
+            <div class="text">Redemption Status</div>
+            <div class="input">Select User</div>
+        </div>
+        <div class="table-row addCustomerRow">
+            <form action="#" class="addCustomer" id="addCustomer">
+                <div class="text"><input class="addCustomerInput" type="text" placeholder="Add new customer" required></div>
+                <div class="text"><input class="addCustomerInput" type="number" placeholder="Order count" min="0" value="0" step="1"></div>
+                <div class="num"><input class="addCustomerInput" type="number" placeholder="Credit" min="0" max="1000" value="0.0" step="0.01"></div>
+                <div class="text">
+                    <label for="eligibilityCheckbox" id="eligibilityCheckboxLabel">Check if eligible</label>
+                    <input class="addCustomerInput" type="checkbox" id="eligibilityCheckbox"></div>
+                    
+                <div class="input"><input class="addCustomerInputSubmit" type="submit" value="Submit"></div>
+            </form>
+        </div>
+        <div class="container" id="customerTable">
+
+        </div>
+    </div>
+
+    <div class="container form">
+        <div class="trash invisible">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
+    </div>
+    <script src="customer.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
